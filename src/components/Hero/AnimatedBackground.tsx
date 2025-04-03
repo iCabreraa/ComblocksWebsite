@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BackgroundWrapper, FloatingCube } from "./AnimatedBackground.styles";
+import { useMounted } from "@/hooks/useMounted";
 
 interface CubeProps {
   id: number;
@@ -11,6 +12,7 @@ interface CubeProps {
 
 const AnimatedBackground = () => {
   const [cubes, setCubes] = useState<CubeProps[]>([]);
+  const mounted = useMounted();
 
   useEffect(() => {
     const generateCubes = (): CubeProps[] =>
@@ -24,6 +26,8 @@ const AnimatedBackground = () => {
 
     setCubes(generateCubes());
   }, []);
+
+  if (!mounted) return null;
 
   return (
     <BackgroundWrapper aria-hidden="true">

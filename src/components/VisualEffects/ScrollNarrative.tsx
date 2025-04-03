@@ -1,12 +1,15 @@
 // components/VisualEffects/ScrollNarrative.tsx
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useMounted } from "@/hooks/useMounted";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollNarrative = () => {
   const cubesRef = useRef<NodeListOf<HTMLElement> | null>(null);
+
+  const mounted = useMounted();
 
   useEffect(() => {
     const cubes = document.querySelectorAll(
@@ -41,6 +44,8 @@ const ScrollNarrative = () => {
       timeline.kill(); // Limpieza en caso de navegación
     };
   }, []);
+
+  if (!mounted) return null;
 
   return null;
 };
