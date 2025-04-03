@@ -1,5 +1,5 @@
 // components/VisualEffects/ScrollNarrative.tsx
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useMounted } from "@/hooks/useMounted";
