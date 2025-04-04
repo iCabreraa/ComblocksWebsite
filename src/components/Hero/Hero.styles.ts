@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-// === Animaciones ===
 const float = keyframes`
   0% { transform: translateY(0) rotate(0); }
   50% { transform: translateY(-12px) rotate(5deg); }
@@ -14,7 +13,7 @@ const fadeInUp = keyframes`
 
 const glow = keyframes`
   0% { box-shadow: 0 0 8px rgba(0, 153, 255, 0.2); }
-  50% { box-shadow: 0 0 14px rgba(0, 153, 255, 0.5); }
+  50% { box-shadow: 0 0 14px rgba(0, 153, 255, 0.6); }
   100% { box-shadow: 0 0 8px rgba(0, 153, 255, 0.2); }
 `;
 
@@ -29,8 +28,24 @@ const gradientShift = keyframes`
   100% { background-position: 0% 50%; }
 `;
 
-// === Wrapper general ===
-export const HeroWrapper = styled.div`
+const typing = keyframes`
+  0% { width: 0 }
+  70% { width: 100% }
+  85% { width: 100% }
+  100% { width: 0 }
+`;
+
+const blinkCaret = keyframes`
+  0%, 100% { border-color: transparent }
+  50% { border-color: var(--color-glow); }
+`;
+
+const getHeroBackground = ($isDarkMode: boolean) =>
+  $isDarkMode
+    ? "/images/hero-background.png"
+    : "/images/hero-background-light.png";
+
+export const HeroWrapper = styled.div<{ $isDarkMode: boolean }>`
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -38,15 +53,20 @@ export const HeroWrapper = styled.div`
   justify-content: center;
   margin-top: -5.5rem;
   padding-top: 5.5rem;
-  padding-bottom: 6rem;
-  background-image: url("/images/hero-background.png");
+  padding-bottom: 2rem;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.15),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url(${(props) => getHeroBackground(props.$isDarkMode)});
   background-size: cover;
   background-position: center;
   overflow: hidden;
   z-index: 1;
 
   @media (max-width: 768px) {
-    padding: 6rem 1.5rem 5rem;
+    padding: 6rem 1.5rem 4rem;
   }
 `;
 
@@ -55,8 +75,8 @@ export const HeroOverlay = styled.div`
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.55),
-    rgba(15, 23, 42, 0.85)
+    rgba(0, 0, 0, 0.3),
+    rgba(15, 23, 42, 0.8)
   );
   z-index: 1;
 `;
@@ -68,7 +88,12 @@ export const CubeGrid = styled.div`
   pointer-events: none;
 `;
 
-export const Cube = styled.div<{ $top: number; $left: number; $size: number }>`
+export const Cube = styled.div<{
+  $top: number;
+  $left: number;
+  $size: number;
+  $isDarkMode: boolean;
+}>`
   position: absolute;
   top: ${({ $top }) => `${$top}%`};
   left: ${({ $left }) => `${$left}%`};
@@ -80,8 +105,11 @@ export const Cube = styled.div<{ $top: number; $left: number; $size: number }>`
     var(--color-brand-600)
   );
   border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-md);
-  opacity: 0.7;
+  box-shadow: 0 0 20px
+    ${({ $isDarkMode }) =>
+      $isDarkMode ? "rgba(0, 153, 255, 0.6)" : "rgba(0, 153, 255, 0.3)"};
+  opacity: ${({ $isDarkMode }) => ($isDarkMode ? 0.85 : 0.7)};
+  mix-blend-mode: ${({ $isDarkMode }) => ($isDarkMode ? "screen" : "overlay")};
   animation: ${float} 6s ease-in-out infinite;
 `;
 
@@ -96,21 +124,47 @@ export const HeroContainer = styled.div`
   animation: ${fadeInUp} 1s ease forwards;
 `;
 
-export const HeroTitle = styled.h1`
-  font-size: 4.2rem;
+export const LogoImage = styled.img<{ $isDarkMode: boolean }>`
+  width: 160px;
+  height: auto;
+  margin-bottom: 2.8rem;
+  filter: ${({ $isDarkMode }) =>
+    $isDarkMode ? "drop-shadow(0 0 20px rgba(0, 153, 255, 0.4))" : "none"};
+`;
+
+export const TitleWrapper = styled.div`
+  margin-bottom: 2rem;
+`;
+
+export const Line1 = styled.h1`
+  font-size: 5.2rem;
   font-family: "Space Grotesk", sans-serif;
   font-weight: 800;
-  color: var(--color-brand-100);
-  margin-bottom: 1.4rem;
-  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  color: var(--text-primary);
+  line-height: 1.2;
 
-  .highlight {
-    color: var(--color-brand-300);
-    text-shadow: 0 0 8px rgba(0, 153, 255, 0.5);
+  .highlight-isms {
+    background: linear-gradient(to right, #f0abfc, #a5f3fc, #c084fc);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: ${gradientShift} 10s ease infinite;
   }
+`;
 
-  @media (max-width: 768px) {
-    font-size: 3.2rem;
+export const Line2 = styled.h1`
+  font-size: 5.2rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-primary);
+
+  .highlight-secure {
+    background: linear-gradient(to right, #7dd3fc, #f0abfc, #38bdf8);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: ${gradientShift} 8s ease-in-out infinite;
   }
 `;
 
@@ -118,38 +172,35 @@ export const HeroSubtitle = styled.h2`
   font-size: 1.8rem;
   font-family: "Inter", sans-serif;
   font-weight: 300;
-  margin-bottom: 2.6rem;
   max-width: 90%;
-  line-height: 1.7;
-  background: linear-gradient(270deg, #a5f3fc, #c084fc, #f0abfc, #7dd3fc);
-  background-size: 600% 600%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: ${gradientShift} 8s ease infinite;
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-    max-width: 100%;
-  }
+  color: var(--text-secondary);
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--color-glow);
+  animation: ${typing} 9s steps(60, end) infinite,
+    ${blinkCaret} 0.75s step-end infinite;
+  margin-bottom: 2.8rem;
 `;
 
 export const HeroButton = styled.button`
-  background-color: var(--color-brand-500);
+  background: linear-gradient(135deg, #3af0ff, #60a5fa);
   color: white;
   font-weight: 600;
-  padding: 1.1rem 2.4rem;
+  padding: 1.2rem 2.6rem;
   font-size: 1.6rem;
   border: none;
   border-radius: var(--border-radius-lg);
   cursor: pointer;
   animation: ${bounce} 3.2s ease-in-out infinite,
     ${glow} 3s infinite ease-in-out;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 
   &:hover {
-    transform: scale(1.07);
-    background-color: var(--color-brand-600);
+    transform: scale(1.27);
+    box-shadow: 0 0 22px rgba(58, 240, 255, 0.7),
+      0 0 50px rgba(58, 240, 255, 0.3);
+    background: linear-gradient(135deg, #5eead4, #c084fc);
   }
 
   &:focus {

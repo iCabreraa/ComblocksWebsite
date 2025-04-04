@@ -8,6 +8,7 @@ import IntegrationSection from "@/components/Sections/IntegrationSection/Integra
 import WhatIsManagementSystemSection from "@/components/Sections/WhatIsManagementSystemSection/WhatIsManagementSystemSection";
 import ManagementSystemSection from "@/components/Sections/ManagementSystemSection/ManagementSystemSection";
 import SupportSection from "@/components/Sections/SupportSection/SupportSection";
+import ScrollNarrativeSection from "@/components/Sections/ScrollNarrativeSection/ScrollNarrativeSection";
 
 const HomePage = () => (
   <>
@@ -45,6 +46,7 @@ const HomePage = () => (
     <Navbar />
     <Hero />
     <ToolCards />
+    <ScrollNarrativeSection />
     <WhatIsManagementSystemSection />
     <IntegrationSection />
     <ManagementSystemSection />

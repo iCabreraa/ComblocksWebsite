@@ -9,6 +9,7 @@ import {
   DropdownButton,
   DropdownMenu,
   DropdownMenuItem,
+  NavCenter,
   NavRight,
   AppButton,
   ThemeToggleButton,
@@ -17,6 +18,18 @@ import {
 import WideContainer from "@/components/Layout/WideContainer";
 import Link from "next/link";
 import { Moon, Sun } from "react-feather";
+import {
+  FiFolder,
+  FiShield,
+  FiClipboard,
+  FiInfo,
+  FiGrid,
+  FiMap,
+  FiMail,
+  FiHelpCircle,
+  FiFileText,
+  FiMessageSquare,
+} from "react-icons/fi";
 import { useDarkMode } from "@/hooks/useDarkMode";
 
 const scrollToSection = (id: string) => {
@@ -42,143 +55,102 @@ const Navbar = () => {
           alignItems: "center",
         }}
       >
+        {/* Logo */}
         <div
           style={{ cursor: "pointer" }}
           onClick={() => scrollToSection("hero")}
         >
           <LogoContainer>
             <LogoImage
-              src={darkMode ? "/iconComblocks-light.png" : "/iconComblocks.png"}
+              src={darkMode ? "/iconComblocks.png" : "/iconComblocks-light.png"}
               alt="Comblocks logo"
             />
             <BrandName>Comblocks</BrandName>
           </LogoContainer>
         </div>
 
-        <MenuGroup>
-          <DropdownWrapper
-            onMouseEnter={() => handleEnter("plataforma")}
-            onMouseLeave={handleLeave}
-          >
-            <DropdownButton
-              aria-haspopup="true"
-              aria-expanded={activeDropdown === "plataforma"}
-              role="button"
-              tabIndex={0}
+        {/* Centro */}
+        <NavCenter>
+          <MenuGroup>
+            <DropdownWrapper
+              onMouseEnter={() => handleEnter("plataforma")}
+              onMouseLeave={handleLeave}
             >
-              Plataforma
-            </DropdownButton>
-            <DropdownMenu $isVisible={activeDropdown === "plataforma"}>
-              <DropdownMenuItem
-                as="div"
-                onClick={() => scrollToSection("tools")}
-                role="menuitem"
-                tabIndex={0}
-              >
-                Gestión de Proyectos
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                as="div"
-                onClick={() => scrollToSection("tools")}
-                role="menuitem"
-                tabIndex={0}
-              >
-                Gestión de Riesgos
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                as="div"
-                onClick={() => scrollToSection("tools")}
-                role="menuitem"
-                tabIndex={0}
-              >
-                Gestión Documental
-              </DropdownMenuItem>
-            </DropdownMenu>
-          </DropdownWrapper>
-
-          <DropdownWrapper
-            onMouseEnter={() => handleEnter("explorar")}
-            onMouseLeave={handleLeave}
-          >
-            <DropdownButton
-              aria-haspopup="true"
-              aria-expanded={activeDropdown === "explorar"}
-              role="button"
-              tabIndex={0}
-            >
-              Explorar
-            </DropdownButton>
-            <DropdownMenu $isVisible={activeDropdown === "explorar"}>
-              <DropdownMenuItem
-                as="div"
-                onClick={() => scrollToSection("tools")}
-                role="menuitem"
-                tabIndex={0}
-              >
-                ¿Qué es?
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                as="div"
-                onClick={() => scrollToSection("app")}
-                role="menuitem"
-                tabIndex={0}
-              >
-                App
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                as="div"
-                onClick={() => scrollToSection("roadmap")}
-                role="menuitem"
-                tabIndex={0}
-              >
-                Roadmap
-              </DropdownMenuItem>
-            </DropdownMenu>
-          </DropdownWrapper>
-
-          <DropdownWrapper
-            onMouseEnter={() => handleEnter("recursos")}
-            onMouseLeave={handleLeave}
-          >
-            <DropdownButton
-              aria-haspopup="true"
-              aria-expanded={activeDropdown === "recursos"}
-              role="button"
-              tabIndex={0}
-            >
-              Recursos
-            </DropdownButton>
-            <DropdownMenu $isVisible={activeDropdown === "recursos"}>
-              <DropdownMenuItem
-                as="div"
-                onClick={() => scrollToSection("contact")}
-                role="menuitem"
-                tabIndex={0}
-              >
-                Contacto
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                as="div"
-                onClick={() => scrollToSection("faq")}
-                role="menuitem"
-                tabIndex={0}
-              >
-                FAQ
-              </DropdownMenuItem>
-              <Link href="/privacy">
-                <DropdownMenuItem as="div" role="menuitem" tabIndex={0}>
-                  Política de Privacidad
+              <DropdownButton>Plataforma</DropdownButton>
+              <DropdownMenu $isVisible={activeDropdown === "plataforma"}>
+                <DropdownMenuItem onClick={() => scrollToSection("tools")}>
+                  <FiClipboard size={18} /> Gestión de Proyectos
                 </DropdownMenuItem>
-              </Link>
-            </DropdownMenu>
-          </DropdownWrapper>
-        </MenuGroup>
+                <DropdownMenuItem onClick={() => scrollToSection("tools")}>
+                  <FiShield size={18} /> Gestión de Riesgos
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => scrollToSection("tools")}>
+                  <FiFolder size={18} /> Gestión Documental
+                </DropdownMenuItem>
+              </DropdownMenu>
+            </DropdownWrapper>
 
-        <NavRight>
+            <DropdownWrapper
+              onMouseEnter={() => handleEnter("explorar")}
+              onMouseLeave={handleLeave}
+            >
+              <DropdownButton>Explorar</DropdownButton>
+              <DropdownMenu $isVisible={activeDropdown === "explorar"}>
+                <DropdownMenuItem onClick={() => scrollToSection("tools")}>
+                  <FiInfo size={18} /> ¿Qué es?
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => scrollToSection("app")}>
+                  <FiGrid size={18} /> App
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => scrollToSection("roadmap")}>
+                  <FiMap size={18} /> Roadmap
+                </DropdownMenuItem>
+              </DropdownMenu>
+            </DropdownWrapper>
+          </MenuGroup>
+
           <ThemeToggleButton onClick={toggleDarkMode} aria-label="Cambiar tema">
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </ThemeToggleButton>
-          <AppButton href="/app">Explorar App</AppButton>
+
+          <MenuGroup>
+            <DropdownWrapper
+              onMouseEnter={() => handleEnter("recursos")}
+              onMouseLeave={handleLeave}
+            >
+              <DropdownButton>Recursos</DropdownButton>
+              <DropdownMenu $isVisible={activeDropdown === "recursos"}>
+                <DropdownMenuItem onClick={() => scrollToSection("contact")}>
+                  <FiMail size={18} /> Contacto
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => scrollToSection("faq")}>
+                  <FiHelpCircle size={18} /> FAQ
+                </DropdownMenuItem>
+                <Link href="/privacy">
+                  <DropdownMenuItem>
+                    <FiFileText size={18} /> Política de Privacidad
+                  </DropdownMenuItem>
+                </Link>
+              </DropdownMenu>
+            </DropdownWrapper>
+
+            <DropdownWrapper
+              onMouseEnter={() => handleEnter("soporte")}
+              onMouseLeave={handleLeave}
+            >
+              <DropdownButton>Soporte</DropdownButton>
+              <DropdownMenu $isVisible={activeDropdown === "soporte"}>
+                <DropdownMenuItem>
+                  <FiMessageSquare size={18} /> Centro de Ayuda
+                </DropdownMenuItem>
+              </DropdownMenu>
+            </DropdownWrapper>
+          </MenuGroup>
+        </NavCenter>
+
+        {/* App */}
+        <NavRight>
+          <AppButton href="#app">Explorar App</AppButton>
         </NavRight>
       </WideContainer>
     </NavbarContainer>

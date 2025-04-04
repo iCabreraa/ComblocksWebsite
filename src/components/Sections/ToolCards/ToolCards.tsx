@@ -1,66 +1,120 @@
-// ToolCards.tsx
-import React from "react";
+import React, { useState } from "react";
 import {
-  CardsGrid,
-  SectionSubtitle,
-  SectionTitle,
-  StyledToolCardsSection,
-  IntroBlock,
-  Card,
-  CardIcon,
-  CardTitle,
-  CardDescription,
+  ToolSection,
+  ToolGrid,
+  FilterButtons,
+  FilterButton,
+  ToolCard,
+  ToolIcon,
+  ToolTitle,
+  ToolDescription,
 } from "./ToolCards.styles";
-import SectionWrapper from "@/components/Layout/SectionWrapper";
-import { FiCheckCircle, FiShield, FiSettings } from "react-icons/fi";
+
+import {
+  FiGrid,
+  FiShield,
+  FiFileText,
+  FiCheckSquare,
+  FiCalendar,
+  FiLifeBuoy,
+  FiBarChart2,
+  FiTool,
+} from "react-icons/fi";
 
 const tools = [
   {
-    id: 1,
+    id: "proyectos-1",
+    category: "proyectos",
+    icon: <FiCheckSquare size={28} />,
     title: "Gestión de Proyectos",
-    description:
-      "Planifica, organiza y ejecuta proyectos con total visibilidad y control.",
-    icon: <FiCheckCircle />,
+    description: "Organiza, asigna y haz seguimiento visual a tareas clave.",
   },
   {
-    id: 2,
+    id: "riesgos-1",
+    category: "riesgos",
+    icon: <FiShield size={28} />,
     title: "Gestión de Riesgos",
-    description:
-      "Identifica, evalúa y mitiga riesgos estratégicos y operacionales fácilmente.",
-    icon: <FiShield />,
+    description: "Identifica, evalúa y mitiga riesgos desde un solo panel.",
   },
   {
-    id: 3,
+    id: "recursos-1",
+    category: "recursos",
+    icon: <FiFileText size={28} />,
     title: "Gestión Documental",
-    description:
-      "Centraliza documentos clave con trazabilidad, seguridad y acceso controlado.",
-    icon: <FiSettings />,
+    description: "Control de versiones, permisos y auditoría documental.",
+  },
+  {
+    id: "proyectos-2",
+    category: "proyectos",
+    icon: <FiBarChart2 size={28} />,
+    title: "Dashboard & App",
+    description: "Visualiza métricas, flujos y estados de tu organización.",
+  },
+  {
+    id: "proyectos-3",
+    category: "proyectos",
+    icon: <FiCalendar size={28} />,
+    title: "Roadmap",
+    description: "Explora el futuro de Comblocks y participa en su evolución.",
+  },
+  {
+    id: "soporte-1",
+    category: "soporte",
+    icon: <FiLifeBuoy size={28} />,
+    title: "Centro de Ayuda",
+    description: "Resuelve dudas y consulta tutoriales rápidamente.",
+  },
+  {
+    id: "riesgos-2",
+    category: "riesgos",
+    icon: <FiTool size={28} />,
+    title: "Panel ISMS/ISO 27001",
+    description: "Tu centro de comando para cumplimiento y auditorías.",
+  },
+  {
+    id: "recursos-2",
+    category: "recursos",
+    icon: <FiGrid size={28} />,
+    title: "Recursos",
+    description: "Plantillas, manuales y contenido para potenciar tu gestión.",
   },
 ];
 
-const ToolCards = () => {
-  return (
-    <SectionWrapper id="tools">
-      <StyledToolCardsSection>
-        <IntroBlock>
-          <SectionTitle>Herramientas Comblocks</SectionTitle>
-          <SectionSubtitle>
-            Organiza, gestiona y automatiza. Descubre todo lo que puedes hacer
-            con nuestros bloques.
-          </SectionSubtitle>
-        </IntroBlock>
+const categories = ["todos", "proyectos", "riesgos", "soporte", "recursos"];
 
-        <CardsGrid>
-          {tools.map((tool) => (
-            <Card key={tool.id}>
-              <CardIcon>{tool.icon}</CardIcon>
-              <CardTitle>{tool.title}</CardTitle>
-              <CardDescription>{tool.description}</CardDescription>
-            </Card>
-          ))}
-        </CardsGrid>
-      </StyledToolCardsSection>
-    </SectionWrapper>
+const ToolCards = () => {
+  const [activeCategory, setActiveCategory] = useState("todos");
+
+  const filteredTools =
+    activeCategory === "todos"
+      ? tools
+      : tools.filter((tool) => tool.category === activeCategory);
+
+  return (
+    <ToolSection id="tools">
+      <FilterButtons>
+        {categories.map((category) => (
+          <FilterButton
+            key={category}
+            onClick={() => setActiveCategory(category)}
+            $active={activeCategory === category}
+            $category={category}
+          >
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </FilterButton>
+        ))}
+      </FilterButtons>
+
+      <ToolGrid>
+        {filteredTools.map((tool) => (
+          <ToolCard key={tool.id} $category={tool.category}>
+            <ToolIcon $category={tool.category}>{tool.icon}</ToolIcon>
+            <ToolTitle>{tool.title}</ToolTitle>
+            <ToolDescription>{tool.description}</ToolDescription>
+          </ToolCard>
+        ))}
+      </ToolGrid>
+    </ToolSection>
   );
 };
 

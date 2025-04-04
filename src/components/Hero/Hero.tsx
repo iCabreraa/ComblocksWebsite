@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import {
   HeroWrapper,
   HeroContainer,
-  HeroTitle,
-  HeroSubtitle,
-  HeroButton,
   HeroOverlay,
   CubeGrid,
   Cube,
+  LogoImage,
+  TitleWrapper,
+  Line1,
+  Line2,
+  HeroSubtitle,
+  HeroButton,
 } from "./Hero.styles";
 import SectionWrapper from "../Layout/SectionWrapper";
 import Container from "../Layout/Container";
@@ -22,6 +25,24 @@ interface CubeProps {
 
 const Hero = () => {
   const [cubes, setCubes] = useState<CubeProps[]>([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const isDark = document.body.classList.contains("dark-mode");
+    setIsDarkMode(isDark);
+
+    const observer = new MutationObserver(() => {
+      const isNowDark = document.body.classList.contains("dark-mode");
+      setIsDarkMode(isNowDark);
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const generateCubes = (): CubeProps[] => {
@@ -37,26 +58,49 @@ const Hero = () => {
 
   return (
     <SectionWrapper id="hero">
-      <HeroWrapper>
+      <HeroWrapper $isDarkMode={isDarkMode}>
         <HeroOverlay />
-        <AnimatedBackground />
+        <AnimatedBackground isDarkMode={isDarkMode} />
         <CubeGrid>
           {cubes.map(({ id, top, left, size }) => (
-            <Cube key={id} $top={top} $left={left} $size={size} />
+            <Cube
+              key={id}
+              $top={top}
+              $left={left}
+              $size={size}
+              $isDarkMode={isDarkMode}
+            />
           ))}
         </CubeGrid>
 
         <Container>
           <HeroContainer>
-            <HeroTitle>
-              Simplifying your ISMS, <span className="highlight">Securing</span>{" "}
-              Your Future.
-            </HeroTitle>
-            <HeroSubtitle>
-              Descubre cómo <strong>Comblocks</strong> optimiza y simplifica tu
-              gestión empresarial
+            <LogoImage
+              src="/iconComblocks.png"
+              alt="Comblocks Logo"
+              $isDarkMode={isDarkMode}
+            />
+            <TitleWrapper>
+              <Line1>
+                Simplifying your <span className="highlight-isms">ISMS</span>,
+              </Line1>
+              <Line2>
+                <span className="highlight-secure">Securing</span> Your Future.
+              </Line2>
+            </TitleWrapper>
+            <HeroSubtitle className="typed-text">
+              Descubre cómo Comblocks optimiza y simplifica tu gestión
+              empresarial
             </HeroSubtitle>
-            <HeroButton aria-label="Explorar Comblocks" role="button">
+            <HeroButton
+              aria-label="Explorar Comblocks"
+              role="button"
+              onClick={() =>
+                document
+                  .getElementById("tools")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               🚀 Explorar Comblocks
             </HeroButton>
           </HeroContainer>

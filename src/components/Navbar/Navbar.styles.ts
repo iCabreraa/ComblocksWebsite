@@ -1,11 +1,12 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 export const NavbarContainer = styled.nav`
   position: sticky;
   top: 0;
   z-index: 1000;
   width: 100%;
-  background-color: var(--color-grey-900);
+  background-color: var(--color-surface);
+  color: var(--text-primary);
   box-shadow: var(--shadow-md);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
@@ -21,8 +22,8 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoImage = styled.img`
-  width: 44px;
-  height: 44px;
+  width: 52px; /* aumentado de 44px */
+  height: 52px;
   transition: filter 0.3s ease;
 
   body.dark-mode & {
@@ -30,11 +31,21 @@ export const LogoImage = styled.img`
   }
 `;
 
+const gradientMove = keyframes`
+  0% { background-position: 0% 50%; opacity: 0.5; }
+  50% { background-position: 100% 50%; opacity: 1; }
+  100% { background-position: 0% 50%; opacity: 0.5; }
+`;
+
 export const BrandName = styled.span`
   font-size: 2.2rem;
   font-weight: 700;
   font-family: "Space Grotesk", sans-serif;
-  color: var(--color-brand-100);
+  background: linear-gradient(270deg, #38bdf8, #3b82f6, #60a5fa);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ${gradientMove} 6s ease-in-out infinite;
 `;
 
 export const MenuGroup = styled.div`
@@ -45,14 +56,15 @@ export const MenuGroup = styled.div`
 export const DropdownButton = styled.button`
   background: none;
   border: none;
-  color: var(--color-grey-100);
   font-size: 1.6rem;
   font-weight: 500;
   cursor: pointer;
   transition: color 0.3s ease;
 
+  color: var(--text-primary);
+
   &:hover {
-    color: var(--color-brand-300);
+    color: var(--color-brand);
   }
 `;
 
@@ -70,8 +82,8 @@ export const DropdownMenu = styled.ul<{ $isVisible: boolean }>`
   left: 50%;
   transform: translateX(-50%) translateY(-12px);
   margin-top: 0.8rem;
-  background-color: var(--color-grey-800);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-lg);
   border-radius: var(--border-radius-md);
   list-style: none;
   padding: 1rem 0;
@@ -95,17 +107,26 @@ export const DropdownMenuItem = styled.li`
   align-items: center;
   gap: 1rem;
   padding: 1.2rem 1.6rem;
-  color: var(--color-grey-100);
   font-size: 1.6rem;
   font-weight: 400;
   font-family: "Inter", sans-serif;
-  cursor: pointer;
+  color: var(--text-primary);
   border-radius: var(--border-radius-sm);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
+
+  svg {
+    transition: color 0.3s ease;
+  }
 
   &:hover {
     background-color: var(--hover-strong);
-    color: var(--color-brand-100);
+    color: #3af0ff;
+    text-shadow: 0 0 6px rgba(58, 240, 255, 0.7);
+
+    svg {
+      color: #3af0ff;
+      filter: drop-shadow(0 0 6px rgba(58, 240, 255, 0.6));
+    }
   }
 `;
 
@@ -115,23 +136,37 @@ export const NavRight = styled.div`
   gap: 1rem;
 `;
 
+const pulseGlow = keyframes`
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(58, 240, 255, 0.3),
+                0 0 24px rgba(58, 240, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(58, 240, 255, 0.5),
+                0 0 30px rgba(58, 240, 255, 0.4);
+  }
+`;
+
 export const AppButton = styled.a`
-  background: linear-gradient(
-    135deg,
-    var(--color-brand-500),
-    var(--color-brand-600)
-  );
-  color: var(--color-grey-0);
-  padding: 0.9rem 1.8rem;
-  font-size: 1.5rem;
+  position: relative;
+  background: linear-gradient(135deg, var(--color-brand), var(--color-glow));
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
   border-radius: var(--border-radius-md);
-  box-shadow: 0 4px 14px rgba(0, 153, 255, 0.3);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 16px rgba(58, 240, 255, 0.25);
+  animation: ${pulseGlow} 3.5s ease-in-out infinite;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 153, 255, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 0 22px rgba(58, 240, 255, 0.6),
+      0 0 40px rgba(58, 240, 255, 0.3);
+    color: #ffffff;
+    text-shadow: 0 0 6px black;
+    background: linear-gradient(135deg, #3af0ff, #60a5fa);
   }
 `;
 
@@ -139,15 +174,26 @@ export const ThemeToggleButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
+  background-color: transparent;
   border: none;
-  color: var(--color-grey-0);
-  font-size: 2rem;
+  color: var(--color-brand-300);
+  font-size: 2.4rem;
   cursor: pointer;
-  padding: 0.5rem;
-  transition: color 0.3s ease;
+  padding: 0.6rem;
+  border-radius: 50%;
+  animation: ${pulseGlow} 3s ease-in-out infinite;
+  transition: color 0.3s ease, background-color 0.3s ease;
 
   &:hover {
-    color: var(--color-brand-300);
+    background-color: var(--hover-strong);
   }
+`;
+
+export const NavCenter = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `;

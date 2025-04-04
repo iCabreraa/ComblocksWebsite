@@ -19,6 +19,7 @@ export const FloatingCube = styled.div<{
   $left: number;
   $size: number;
   $delay: number;
+  $isDarkMode: boolean;
 }>`
   position: absolute;
   top: ${({ $top }) => `${$top}%`};
@@ -31,8 +32,11 @@ export const FloatingCube = styled.div<{
     var(--color-brand-600)
   );
   border-radius: var(--border-radius-md);
-  box-shadow: 0 0 10px rgba(0, 153, 255, 0.25);
-  opacity: 0.65;
-  animation: ${float} 6s ease-in-out infinite;
+  box-shadow: 0 0 18px
+    ${({ $isDarkMode }) =>
+      $isDarkMode ? "rgba(0, 153, 255, 0.6)" : "rgba(0, 153, 255, 0.28)"};
+  opacity: ${({ $isDarkMode }) => ($isDarkMode ? 0.75 : 0.65)};
+  mix-blend-mode: ${({ $isDarkMode }) => ($isDarkMode ? "screen" : "overlay")};
+  animation: ${float} 7s ease-in-out infinite;
   animation-delay: ${({ $delay }) => `${$delay}s`};
 `;

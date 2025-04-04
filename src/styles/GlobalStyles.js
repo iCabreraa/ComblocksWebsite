@@ -1,78 +1,62 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-  /* 🎨 COLOR SYSTEM ================================================== */
+  /* === FUENTES BASE === */
   :root {
-    /* Light Mode - Grey Scale */
-    --color-grey-0: #f4f8ff;
-    --color-grey-50: #eaf2fd;
-    --color-grey-100: #dde9fc;
-    --color-grey-200: #cddafc;
-    --color-grey-300: #b8c9e9;
-    --color-grey-400: #94a3b8;
-    --color-grey-500: #64748b;
-    --color-grey-600: #475569;
-    --color-grey-700: #334155;
-    --color-grey-800: #1e293b;
-    --color-grey-900: #0f172a;
+    /* Light Mode */
+    --color-bg: #f4f8ff;
+    --color-surface: #ffffff;
+    --color-surface-alt: #eaf2fd;
 
-    /* Light Mode - Brand */
-    --color-brand-primary: #3b82f6;
-    --color-brand-100: #a5d8ff;
-    --color-brand-300: #60a5fa;
-    --color-brand-500: #3b82f6;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+
+    --color-brand: #3b82f6;
+    --color-brand-100: #60a5fa;
+    --color-brand-300: #38bdf8;
     --color-brand-600: #2563eb;
-    --color-brand-800: #1e3a8a;
 
-    /* Feedback Colors */
+    --color-glow: #7dd3fc;
+
     --color-green: #22c55e;
     --color-red: #ef4444;
     --color-yellow: #fcd34d;
 
-    /* Shadows */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.12);
+    --shadow-elevated: 0 8px 24px rgba(0, 153, 255, 0.08);
 
-    /* Borders */
     --border-radius-sm: 5px;
     --border-radius-md: 8px;
     --border-radius-lg: 12px;
 
-    /* Hover + UI */
     --hover-light: rgba(0, 153, 255, 0.08);
     --hover-strong: rgba(0, 153, 255, 0.18);
     --backdrop-color: rgba(0, 0, 0, 0.1);
   }
 
-  /* 🌑 DARK MODE ===================================================== */
   body.dark-mode {
-    --color-grey-0: #0f172a;
-    --color-grey-50: #1e293b;
-    --color-grey-100: #1e293b;
-    --color-grey-200: #334155;
-    --color-grey-300: #475569;
-    --color-grey-400: #64748b;
-    --color-grey-500: #94a3b8;
-    --color-grey-800: #e2e8f0;
-    --color-grey-900: #f8fafc;
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+    --color-surface-alt: #334155;
 
-    --color-brand-100: #7dd3fc;
-    --color-brand-300: #38bdf8;
-    --color-brand-600: #3b82f6;
-    --color-brand-800: #1e3a8a;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
 
+    --color-brand: #3b82f6;
+    --color-glow: #38bdf8;
+
+    --shadow-sm: 0 1px 2px rgba(255, 255, 255, 0.04);
     --shadow-md: 0 4px 6px rgba(255, 255, 255, 0.08);
     --shadow-lg: 0 10px 15px rgba(255, 255, 255, 0.12);
+    --shadow-elevated: 0 8px 24px rgba(0, 153, 255, 0.2);
 
     --hover-light: rgba(255, 255, 255, 0.05);
     --hover-strong: rgba(255, 255, 255, 0.08);
-
-    background-color: var(--color-grey-50);
-    color: var(--color-grey-800);
   }
 
-  /* 🧱 BASE STYLES =================================================== */
+  /* === RESET Y BASE === */
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -88,21 +72,49 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Poppins', sans-serif;
     font-size: 1.6rem;
-    color: var(--color-grey-800);
-    background-color: var(--color-grey-0);
+    color: var(--text-primary);
+    background-color: var(--color-bg);
     min-height: 100vh;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
   }
 
   a {
-    color: inherit;
+    color: var(--color-brand);
     text-decoration: none;
+    transition: all 0.3s ease;
   }
 
-  ul {
-    list-style: none;
+  a:hover {
+    color: var(--color-brand-300);
+    text-shadow: 0 0 8px var(--color-glow);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
+
+  h1 {
+    font-size: 4.2rem;
+  }
+
+  h2 {
+    font-size: 3.2rem;
+  }
+
+  h3 {
+    font-size: 2.4rem;
+  }
+
+  h4 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.6rem;
+    color: var(--text-secondary);
   }
 
   button, input, textarea, select {
@@ -121,8 +133,12 @@ const GlobalStyles = createGlobalStyle`
     display: block;
   }
 
+  ul {
+    list-style: none;
+  }
+
   :focus-visible {
-    outline: 2px solid var(--color-brand-600);
+    outline: 2px solid var(--color-brand);
     outline-offset: 2px;
   }
 

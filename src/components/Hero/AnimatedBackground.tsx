@@ -10,7 +10,11 @@ interface CubeProps {
   delay: number;
 }
 
-const AnimatedBackground = () => {
+interface AnimatedBackgroundProps {
+  isDarkMode: boolean;
+}
+
+const AnimatedBackground = ({ isDarkMode }: AnimatedBackgroundProps) => {
   const [cubes, setCubes] = useState<CubeProps[]>([]);
   const mounted = useMounted();
 
@@ -38,6 +42,7 @@ const AnimatedBackground = () => {
           $left={cube.left}
           $size={cube.size}
           $delay={cube.delay}
+          $isDarkMode={isDarkMode}
         />
       ))}
     </BackgroundWrapper>
