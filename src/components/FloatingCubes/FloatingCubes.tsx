@@ -166,7 +166,7 @@ const FloatingCubes = () => {
         scrub: 1,
         onUpdate: (self) => {
           const progress = self.progress;
-          let p =
+          const p =
             progress < 0.4
               ? progress / 0.4
               : progress > 0.5

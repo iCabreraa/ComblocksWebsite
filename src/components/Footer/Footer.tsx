@@ -8,21 +8,20 @@ import {
   FooterLink,
   FooterBottom,
   Copyright,
-  LanguageSelector,
   SocialIcons,
 } from "./Footer.styles";
 import { FaXTwitter, FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa6";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 const Footer = () => {
   const { t } = useTranslation("common");
-  const router = useRouter();
+  // const router = useRouter();
 
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedLang = e.target.value;
-    router.push(router.pathname, router.asPath, { locale: selectedLang });
-  };
+  // const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   const selectedLang = e.target.value;
+  //   router.push(router.pathname, router.asPath, { locale: selectedLang });
+  // };
 
   return (
     <FooterContainer>

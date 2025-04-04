@@ -27,7 +27,7 @@ export const FilterButton = styled.button<{
   transition: all 0.3s ease;
 
   ${({ $active, $category }) => {
-    const colors: any = {
+    const colors: Record<string, string> = {
       proyectos: "#3af0ff",
       riesgos: "#ff4d4d",
       soporte: "#2ef6a3",
