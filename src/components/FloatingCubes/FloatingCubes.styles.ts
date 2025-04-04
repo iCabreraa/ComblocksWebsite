@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
+import { Category } from "./FloatingCubes"; // importar el tipo
 
-export const FloatingCube = styled.div<{ $category: string }>`
+export const FloatingCube = styled.div<{ $category: Category }>`
   position: absolute;
   top: 50%;
   left: 50%;

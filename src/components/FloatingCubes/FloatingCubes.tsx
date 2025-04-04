@@ -14,7 +14,11 @@ import { useTranslation } from "next-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const logoMatrix = [
+// ✨ Define tipo seguro para categoría
+export type Category = "proyectos" | "riesgos" | "soporte" | "recursos";
+
+// ✨ Matriz con categorías por celda
+const logoMatrix: (Category | "")[][] = [
   [
     "",
     "",
@@ -107,12 +111,15 @@ const logoMatrix = [
   ],
 ];
 
-const categoryIconMap = {
+// ✨ Iconos por categoría
+const categoryIconMap: Record<Category, JSX.Element> = {
   proyectos: <FiFolder />,
   riesgos: <FiAlertTriangle />,
   soporte: <FiUsers />,
   recursos: <FiBarChart2 />,
 };
+
+// ✨ Construcción de datos para los cubos
 const cubesData = logoMatrix.flatMap((row, rowIndex) =>
   row
     .map((category, colIndex) =>
@@ -120,8 +127,8 @@ const cubesData = logoMatrix.flatMap((row, rowIndex) =>
         ? {
             row: rowIndex,
             col: colIndex,
-            category,
-            icon: categoryIconMap[category],
+            category: category as Category,
+            icon: categoryIconMap[category as Category],
           }
         : null
     )
@@ -138,6 +145,7 @@ const FloatingCubes = () => {
     const ctx = gsap.context(() => {
       const narrative = containerRef.current;
       if (!narrative) return;
+
       const spacing = 42;
       const numCols = logoMatrix[0].length;
       const numRows = logoMatrix.length;
@@ -187,7 +195,7 @@ const FloatingCubes = () => {
           }
 
           cubesRef.current.forEach((el, i) => {
-            const { row, col } = cubesData[i];
+            const { row, col } = cubesData[i]!;
             const targetX = col * spacing - offsetX;
             const targetY = row * spacing - offsetY;
             const initialX = parseFloat(el.dataset.initialX || "0");
