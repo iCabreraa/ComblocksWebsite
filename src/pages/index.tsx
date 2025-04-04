@@ -11,11 +11,13 @@ import ScrollNarrativeSection from "@/components/Sections/ScrollNarrativeSection
 // pages/index.tsx
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export const getStaticProps = async ({ locale }) => {
+import { GetStaticPropsContext } from "next";
+
+export const getStaticProps = async ({ locale }: GetStaticPropsContext) => {
   console.log("Cargando traducciones para:", locale);
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      ...(await serverSideTranslations(locale ?? "es", ["common"])),
     },
   };
 };
