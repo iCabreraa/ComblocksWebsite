@@ -121,19 +121,26 @@ const categoryIconMap: Record<Category, JSX.Element> = {
 };
 
 // ✨ Construcción de datos para los cubos
-const cubesData = logoMatrix.flatMap((row, rowIndex) =>
+type CubeData = {
+  row: number;
+  col: number;
+  category: keyof typeof categoryIconMap;
+  icon: JSX.Element;
+};
+
+const cubesData: CubeData[] = logoMatrix.flatMap((row, rowIndex) =>
   row
     .map((category, colIndex) =>
       category
         ? {
             row: rowIndex,
             col: colIndex,
-            category: category as Category,
-            icon: categoryIconMap[category as Category],
+            category: category as keyof typeof categoryIconMap,
+            icon: categoryIconMap[category as keyof typeof categoryIconMap],
           }
         : null
     )
-    .filter(Boolean)
+    .filter((item): item is CubeData => item !== null)
 );
 
 const FloatingCubes = () => {
