@@ -1,5 +1,3 @@
-// _app.tsx
-
 import type { AppProps } from "next/app";
 import GlobalStyles from "@/styles/GlobalStyles";
 import AnimatedBackground from "@/components/Hero/AnimatedBackground";
