@@ -1,11 +1,11 @@
 // pages/_document.tsx
 import Document, {
-  DocumentContext,
-  DocumentInitialProps,
   Html,
   Head,
   Main,
   NextScript,
+  DocumentContext,
+  DocumentInitialProps,
 } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
@@ -40,7 +40,9 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="es">
+      <Html lang={this.props.__NEXT_DATA__.locale || "en"}>
+        {" "}
+        {/* ✅ Dinámico */}
         <Head />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap"

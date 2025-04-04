@@ -1,7 +1,9 @@
+// next.config.ts
 import type { NextConfig } from "next";
+const i18n = require("./next-i18next.config").i18n; // ✅ Importa solo el objeto plano
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  i18n,
   reactStrictMode: true,
   compiler: {
     styledComponents: true,

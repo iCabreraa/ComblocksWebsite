@@ -10,10 +10,10 @@ import {
 } from "react-icons/fi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "next-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Matriz extendida con forma clara de infinito
 const logoMatrix = [
   [
     "",
@@ -113,7 +113,6 @@ const categoryIconMap = {
   soporte: <FiUsers />,
   recursos: <FiBarChart2 />,
 };
-
 const cubesData = logoMatrix.flatMap((row, rowIndex) =>
   row
     .map((category, colIndex) =>
@@ -130,6 +129,7 @@ const cubesData = logoMatrix.flatMap((row, rowIndex) =>
 );
 
 const FloatingCubes = () => {
+  const { t } = useTranslation("common");
   const cubesRef = useRef<HTMLDivElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -138,27 +138,18 @@ const FloatingCubes = () => {
     const ctx = gsap.context(() => {
       const narrative = containerRef.current;
       if (!narrative) return;
-
       const spacing = 42;
       const numCols = logoMatrix[0].length;
       const numRows = logoMatrix.length;
       const offsetX = ((numCols - 1) * spacing) / 2;
       const offsetY = ((numRows - 1) * spacing) / 2;
 
-      // Posición inicial dispersa
-      cubesRef.current.forEach((el, i) => {
+      cubesRef.current.forEach((el) => {
         const x = gsap.utils.random(-700, 700);
         const y = gsap.utils.random(-500, 500);
         el.dataset.initialX = String(x);
         el.dataset.initialY = String(y);
-
-        gsap.set(el, {
-          x,
-          y,
-          opacity: 0.3,
-          scale: 0.7,
-        });
-
+        gsap.set(el, { x, y, opacity: 0.3, scale: 0.7 });
         gsap.to(el, {
           y: `+=6`,
           duration: 2.5 + Math.random(),
@@ -168,7 +159,6 @@ const FloatingCubes = () => {
         });
       });
 
-      // Animación reversible con efecto "sticky visual"
       ScrollTrigger.create({
         trigger: narrative,
         start: "top bottom",
@@ -176,18 +166,13 @@ const FloatingCubes = () => {
         scrub: 1,
         onUpdate: (self) => {
           const progress = self.progress;
+          let p =
+            progress < 0.4
+              ? progress / 0.4
+              : progress > 0.5
+              ? (1 - progress) / 0.3
+              : 1;
 
-          // Sticky en el centro
-          let p = 0;
-          if (progress < 0.4) {
-            p = progress / 0.4;
-          } else if (progress > 0.5) {
-            p = (1 - progress) / 0.3;
-          } else {
-            p = 1;
-          }
-
-          // Texto visual aparece solo cuando figura está armada
           if (textRef.current) {
             const opacity =
               progress >= 0.4 && progress <= 0.5
@@ -201,17 +186,14 @@ const FloatingCubes = () => {
             });
           }
 
-          // Aplicar efecto ola
           cubesRef.current.forEach((el, i) => {
-            const { row, col } = cubesData[i]; // ← aquí sí tienes `col`
+            const { row, col } = cubesData[i];
             const targetX = col * spacing - offsetX;
             const targetY = row * spacing - offsetY;
-
             const initialX = parseFloat(el.dataset.initialX || "0");
             const initialY = parseFloat(el.dataset.initialY || "0");
-
-            const waveDelay = col / numCols; // ← valor progresivo para efecto de ola
-            const waveHue = 0 + 360 * waveDelay; // ← modificador de color (opcional)
+            const waveDelay = col / numCols;
+            const waveHue = 0 + 360 * waveDelay;
 
             const currentX = gsap.utils.interpolate(initialX, targetX, p);
             const currentY = gsap.utils.interpolate(initialY, targetY, p);
@@ -225,7 +207,7 @@ const FloatingCubes = () => {
               delay: 0.1 * p * waveDelay,
               ease: "power3.out",
               overwrite: "auto",
-              filter: `hue-rotate(${waveHue}deg)`, // ← cambio de color sutil en la ola
+              filter: `hue-rotate(${waveHue}deg)`,
             });
           });
         },
@@ -243,7 +225,7 @@ const FloatingCubes = () => {
       style={{ position: "absolute", inset: 0, overflow: "hidden" }}
     >
       <NarrativeMessage ref={textRef}>
-        Comblocks transforma este caos en estructura. Observa cómo se organiza.
+        {t("floatingCubes.message")}
       </NarrativeMessage>
 
       {cubesData.map((cube, index) => (

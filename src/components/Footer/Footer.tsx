@@ -1,5 +1,3 @@
-// components/Footer/Footer.tsx
-
 import React from "react";
 import {
   FooterContainer,
@@ -14,33 +12,46 @@ import {
   SocialIcons,
 } from "./Footer.styles";
 import { FaXTwitter, FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa6";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 const Footer = () => {
+  const { t } = useTranslation("common");
+  const router = useRouter();
+
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedLang = e.target.value;
+    router.push(router.pathname, router.asPath, { locale: selectedLang });
+  };
+
   return (
     <FooterContainer>
       <FooterTop>
         <FooterGrid>
           <FooterColumn>
-            <FooterTitle>Comblocks</FooterTitle>
-            <FooterLink href="#">Visión</FooterLink>
-            <FooterLink href="#">Explorar App</FooterLink>
+            <FooterTitle>{t("footer.comblocks.title")}</FooterTitle>
+            <FooterLink href="#">{t("footer.comblocks.vision")}</FooterLink>
+            <FooterLink href="#">{t("footer.comblocks.exploreApp")}</FooterLink>
           </FooterColumn>
 
           <FooterColumn>
-            <FooterTitle>Recursos</FooterTitle>
-            <FooterLink href="#">Centro de ayuda</FooterLink>
-            <FooterLink href="#">Documentación</FooterLink>
-            <FooterLink href="#">Tutoriales</FooterLink>
+            <FooterTitle>{t("footer.resources.title")}</FooterTitle>
+            <FooterLink href="#">{t("footer.resources.helpCenter")}</FooterLink>
+            <FooterLink href="#">
+              {t("footer.resources.documentation")}
+            </FooterLink>
+            <FooterLink href="#">{t("footer.resources.tutorials")}</FooterLink>
           </FooterColumn>
 
           <FooterColumn>
-            <FooterTitle>Legal</FooterTitle>
-            <FooterLink href="#">Términos y condiciones</FooterLink>
-            <FooterLink href="#">Política de cookies</FooterLink>
+            <FooterTitle>{t("footer.legal.title")}</FooterTitle>
+            <FooterLink href="#">{t("footer.legal.terms")}</FooterLink>
+            <FooterLink href="#">{t("footer.legal.cookies")}</FooterLink>
+            <FooterLink href="#">{t("footer.legal.privacy")}</FooterLink>
           </FooterColumn>
 
           <FooterColumn>
-            <FooterTitle>Redes</FooterTitle>
+            <FooterTitle>{t("footer.social.title")}</FooterTitle>
             <SocialIcons>
               <a href="#">
                 <FaXTwitter />
@@ -60,15 +71,8 @@ const Footer = () => {
       </FooterTop>
 
       <FooterBottom>
-        <LanguageSelector>
-          <label htmlFor="language">Idioma:</label>
-          <select id="language">
-            <option value="es">ES</option>
-            <option value="en">EN</option>
-          </select>
-        </LanguageSelector>
         <Copyright>
-          © {new Date().getFullYear()} Comblocks. Todos los derechos reservados.
+          {t("footer.copyright", { year: new Date().getFullYear() })}
         </Copyright>
       </FooterBottom>
     </FooterContainer>

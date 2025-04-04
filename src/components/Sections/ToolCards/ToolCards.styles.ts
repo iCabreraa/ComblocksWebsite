@@ -81,12 +81,6 @@ export const ToolCard = styled.div<{ $category: string }>`
       &:hover {
         box-shadow: 0 0 28px ${glowColor}, 0 0 48px ${glowColor};
         transform: translateY(-10px);
-
-        // Glow sobre el ícono
-        div {
-          filter: drop-shadow(0 0 6px ${glowColor})
-            drop-shadow(0 0 12px ${glowColor});
-        }
       }
     `;
   }}

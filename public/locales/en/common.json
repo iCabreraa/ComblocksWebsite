@@ -1,0 +1,121 @@
+{
+  "navbar": {
+    "platform": "Platform",
+    "projectManagement": "Project Management",
+    "riskManagement": "Risk Management",
+    "documentManagement": "Document Management",
+    "explore": "Explore",
+    "whatIs": "What is it?",
+    "app": "App",
+    "roadmap": "Roadmap",
+    "resources": "Resources",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "privacyPolicy": "Privacy Policy",
+    "support": "Support",
+    "helpCenter": "Help Center",
+    "exploreApp": "Explore App"
+  },
+  "hero": {
+    "title1": "Simplifying your ISMS,",
+    "title2": "securing your future.",
+    "subtitle": "Discover how Comblocks optimizes and simplifies your business management.",
+    "cta": "Explore Comblocks"
+  },
+  "managementSystem": {
+    "title": "What is a Management System?",
+    "description": "It is a structured way of organizing your company's information and processes to achieve goals. Comblocks turns this theory into practical tools you can use from day one."
+  },
+  "narrative": {
+    "title": "Does this chaos look familiar?",
+    "subtitle": "Comblocks turns chaos into structure. Watch how it gets organized."
+  },
+  "tools": {
+    "project": {
+      "title": "Project Management",
+      "description": "Organize, assign, and visually track key tasks."
+    },
+    "risk": {
+      "title": "Risk Management",
+      "description": "Identify, assess, and mitigate risks from a single panel."
+    },
+    "documents": {
+      "title": "Document Management",
+      "description": "Version control, permissions, and audit trails."
+    },
+    "dashboard": {
+      "title": "Dashboard & App",
+      "description": "View metrics, workflows, and organizational statuses."
+    },
+    "roadmap": {
+      "title": "Roadmap",
+      "description": "Explore the future of Comblocks and contribute to its evolution."
+    },
+    "help": {
+      "title": "Help Center",
+      "description": "Find answers and access tutorials quickly."
+    },
+    "isms": {
+      "title": "ISMS/ISO 27001 Panel",
+      "description": "Your command center for compliance and audits."
+    },
+    "resources": {
+      "title": "Resources",
+      "description": "Templates, manuals, and content to boost your operations."
+    }
+  },
+  "categories": {
+    "todos": "All",
+    "proyectos": "Projects",
+    "riesgos": "Risks",
+    "soporte": "Support",
+    "recursos": "Resources"
+  },
+  "floatingCubes": {
+    "message": "Comblocks transforms this chaos into structure. Watch it organize."
+  },
+  "support": {
+    "title": "Do you have questions or need help?",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send"
+    },
+    "faq": {
+      "q1": "What is Comblocks?",
+      "a1": "A modular solution to manage processes, risks, and documentation.",
+      "q2": "Is it compatible with ISO 27001?",
+      "a2": "Yes, Comblocks is designed to support ISO-based management systems."
+    }
+  },
+  "footer": {
+    "comblocks": {
+      "title": "Comblocks",
+      "vision": "Vision",
+      "exploreApp": "Explore App"
+    },
+    "resources": {
+      "title": "Resources",
+      "helpCenter": "Help Center",
+      "documentation": "Documentation",
+      "tutorials": "Tutorials"
+    },
+    "legal": {
+      "title": "Legal",
+      "terms": "Terms and Conditions",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Policy"
+    },
+    "social": {
+      "title": "Social"
+    },
+    "language": {
+      "label": "Language",
+      "es": "ES",
+      "en": "EN",
+      "nl": "NL"
+    },
+    "copyright": "© {{year}} Comblocks. All rights reserved."
+  }
+}

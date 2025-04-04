@@ -15,6 +15,7 @@ import {
 import SectionWrapper from "../Layout/SectionWrapper";
 import Container from "../Layout/Container";
 import AnimatedBackground from "./AnimatedBackground";
+import { useTranslation } from "next-i18next";
 
 interface CubeProps {
   id: number;
@@ -26,21 +27,19 @@ interface CubeProps {
 const Hero = () => {
   const [cubes, setCubes] = useState<CubeProps[]>([]);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     const isDark = document.body.classList.contains("dark-mode");
     setIsDarkMode(isDark);
-
     const observer = new MutationObserver(() => {
       const isNowDark = document.body.classList.contains("dark-mode");
       setIsDarkMode(isNowDark);
     });
-
     observer.observe(document.body, {
       attributes: true,
       attributeFilter: ["class"],
     });
-
     return () => observer.disconnect();
   }, []);
 
@@ -81,27 +80,18 @@ const Hero = () => {
               $isDarkMode={isDarkMode}
             />
             <TitleWrapper>
-              <Line1>
-                Simplifying your <span className="highlight-isms">ISMS</span>,
-              </Line1>
-              <Line2>
-                <span className="highlight-secure">Securing</span> Your Future.
-              </Line2>
+              <Line1>{t("hero.title1")}</Line1>
+              <Line2>{t("hero.title2")}</Line2>
             </TitleWrapper>
-            <HeroSubtitle className="typed-text">
-              Descubre cómo Comblocks optimiza y simplifica tu gestión
-              empresarial
-            </HeroSubtitle>
+            <HeroSubtitle>{t("hero.subtitle")}</HeroSubtitle>
             <HeroButton
-              aria-label="Explorar Comblocks"
-              role="button"
               onClick={() =>
                 document
                   .getElementById("tools")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              🚀 Explorar Comblocks
+              🚀 {t("hero.cta")}
             </HeroButton>
           </HeroContainer>
         </Container>

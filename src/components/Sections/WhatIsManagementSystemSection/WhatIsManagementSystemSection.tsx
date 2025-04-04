@@ -1,6 +1,6 @@
-// WhatIsManagementSystemSection.tsx (versión simplificada)
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "next-i18next";
 
 const Section = styled.section`
   padding: 8rem 2rem;
@@ -22,15 +22,15 @@ const Paragraph = styled.p`
   opacity: 0.9;
 `;
 
-const WhatIsManagementSystemSection = () => (
-  <Section>
-    <Title>¿Qué es un Sistema de Gestión?</Title>
-    <Paragraph>
-      Es una forma estructurada de organizar la información y los procesos de tu
-      empresa para alcanzar objetivos. Comblocks convierte esa teoría en
-      herramientas prácticas que puedes usar desde el primer día.
-    </Paragraph>
-  </Section>
-);
+const WhatIsManagementSystemSection = () => {
+  const { t } = useTranslation("common");
+
+  return (
+    <Section>
+      <Title>{t("managementSystem.title")}</Title>
+      <Paragraph>{t("managementSystem.description")}</Paragraph>
+    </Section>
+  );
+};
 
 export default WhatIsManagementSystemSection;

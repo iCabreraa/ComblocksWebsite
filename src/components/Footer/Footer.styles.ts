@@ -48,7 +48,7 @@ export const FooterBottom = styled.div`
   max-width: 1200px;
   margin: 2rem auto 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   align-items: center;

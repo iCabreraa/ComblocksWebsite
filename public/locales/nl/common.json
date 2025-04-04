@@ -1,0 +1,121 @@
+{
+  "navbar": {
+    "platform": "Platform",
+    "projectManagement": "Projectbeheer",
+    "riskManagement": "Risicobeheer",
+    "documentManagement": "Documentbeheer",
+    "explore": "Verkennen",
+    "whatIs": "Wat is het?",
+    "app": "App",
+    "roadmap": "Routekaart",
+    "resources": "Bronnen",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "privacyPolicy": "Privacybeleid",
+    "support": "Ondersteuning",
+    "helpCenter": "Helpcentrum",
+    "exploreApp": "App Verkennen"
+  },
+  "hero": {
+    "title1": "Je ISMS vereenvoudigen,",
+    "title2": "je toekomst veiligstellen.",
+    "subtitle": "Ontdek hoe Comblocks jouw bedrijfsbeheer optimaliseert en vereenvoudigt.",
+    "cta": "Verken Comblocks"
+  },
+  "managementSystem": {
+    "title": "Wat is een Managementsysteem?",
+    "description": "Een gestructureerde manier om de informatie en processen van je bedrijf te organiseren om doelen te bereiken. Comblocks maakt van deze theorie praktische tools die je vanaf dag één kunt gebruiken."
+  },
+  "narrative": {
+    "title": "Komt deze chaos je bekend voor?",
+    "subtitle": "Comblocks verandert deze chaos in structuur. Kijk hoe het wordt georganiseerd."
+  },
+  "tools": {
+    "project": {
+      "title": "Projectbeheer",
+      "description": "Organiseer, wijs toe en volg belangrijke taken visueel op."
+    },
+    "risk": {
+      "title": "Risicobeheer",
+      "description": "Identificeer, beoordeel en verminder risico's vanuit één overzicht."
+    },
+    "documents": {
+      "title": "Documentbeheer",
+      "description": "Versiebeheer, machtigingen en audit trails."
+    },
+    "dashboard": {
+      "title": "Dashboard & App",
+      "description": "Bekijk statistieken, workflows en statussen van de organisatie."
+    },
+    "roadmap": {
+      "title": "Routekaart",
+      "description": "Verken de toekomst van Comblocks en draag bij aan de evolutie."
+    },
+    "help": {
+      "title": "Helpcentrum",
+      "description": "Vind snel antwoorden en toegang tot tutorials."
+    },
+    "isms": {
+      "title": "ISMS/ISO 27001 Paneel",
+      "description": "Jouw controlecentrum voor compliance en audits."
+    },
+    "resources": {
+      "title": "Bronnen",
+      "description": "Sjablonen, handleidingen en inhoud om je processen te versterken."
+    }
+  },
+  "categories": {
+    "todos": "Alle",
+    "proyectos": "Projecten",
+    "riesgos": "Risico's",
+    "soporte": "Ondersteuning",
+    "recursos": "Bronnen"
+  },
+  "floatingCubes": {
+    "message": "Comblocks verandert deze chaos in structuur. Zie hoe het zich organiseert."
+  },
+  "support": {
+    "title": "Heb je vragen of hulp nodig?",
+    "form": {
+      "name": "Naam",
+      "email": "E-mailadres",
+      "message": "Bericht",
+      "submit": "Versturen"
+    },
+    "faq": {
+      "q1": "Wat is Comblocks?",
+      "a1": "Een modulaire oplossing voor het beheren van processen, risico's en documentatie.",
+      "q2": "Is het compatibel met ISO 27001?",
+      "a2": "Ja, Comblocks is ontworpen om ISO-gebaseerde managementsystemen te ondersteunen."
+    }
+  },
+  "footer": {
+    "comblocks": {
+      "title": "Comblocks",
+      "vision": "Visie",
+      "exploreApp": "App Verkennen"
+    },
+    "resources": {
+      "title": "Bronnen",
+      "helpCenter": "Helpcentrum",
+      "documentation": "Documentatie",
+      "tutorials": "Handleidingen"
+    },
+    "legal": {
+      "title": "Wettelijk",
+      "terms": "Algemene voorwaarden",
+      "privacy": "Privacybeleid",
+      "cookies": "Cookiebeleid"
+    },
+    "social": {
+      "title": "Netwerken"
+    },
+    "language": {
+      "label": "Taal",
+      "es": "ES",
+      "en": "EN",
+      "nl": "NL"
+    },
+    "copyright": "© {{year}} Comblocks. Alle rechten voorbehouden."
+  }
+}

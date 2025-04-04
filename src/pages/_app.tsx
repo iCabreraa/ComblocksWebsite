@@ -1,3 +1,4 @@
+import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
 import GlobalStyles from "@/styles/GlobalStyles";
 import AnimatedBackground from "@/components/Hero/AnimatedBackground";
@@ -12,4 +13,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

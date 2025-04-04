@@ -8,6 +8,18 @@ import WhatIsManagementSystemSection from "@/components/Sections/WhatIsManagemen
 import SupportSection from "@/components/Sections/SupportSection/SupportSection";
 import ScrollNarrativeSection from "@/components/Sections/ScrollNarrativeSection/ScrollNarrativeSection";
 
+// pages/index.tsx
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export const getStaticProps = async ({ locale }) => {
+  console.log("Cargando traducciones para:", locale);
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+};
+
 const HomePage = () => (
   <>
     <Head>
@@ -40,14 +52,13 @@ const HomePage = () => (
       <link rel="manifest" href="/site.webmanifest" />
       <link rel="shortcut icon" href="/favicon.ico" />
     </Head>
-
     <Navbar />
-    <Hero />
-    <ToolCards />
-    <WhatIsManagementSystemSection />
-    <ScrollNarrativeSection />
-
-    <Footer />
+    <Hero /> {/*Impacto visual inicial + claim */}
+    <ScrollNarrativeSection /> {/* Transición del caos al orden*/}
+    <ToolCards /> {/*Presentación de herramientas organizadas*/}
+    <WhatIsManagementSystemSection /> {/* Concepto educativo reforzado*/}
+    <SupportSection /> {/* (si se mantiene: breve, útil, visual)*/}
+    <Footer /> {/* Legal + enlaces + redes*/}
   </>
 );
 
