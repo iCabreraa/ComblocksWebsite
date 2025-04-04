@@ -11,6 +11,7 @@ import {
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslation } from "next-i18next";
+import type { JSX } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
