@@ -3,6 +3,7 @@ import {
   NarrativeSection,
   NarrativeWrapper,
   NarrativeTitle,
+  NarrativeText,
 } from "./ScrollNarrativeSection.styles";
 import FloatingCubes from "@/components/FloatingCubes/FloatingCubes";
 
@@ -12,6 +13,10 @@ const ScrollNarrativeSection = () => {
       <FloatingCubes />
       <NarrativeWrapper>
         <NarrativeTitle>¿Te suena este caos?</NarrativeTitle>
+        <NarrativeText>
+          Comblocks transforma este caos en estructura. Observa cómo se
+          organiza.
+        </NarrativeText>
       </NarrativeWrapper>
     </NarrativeSection>
   );

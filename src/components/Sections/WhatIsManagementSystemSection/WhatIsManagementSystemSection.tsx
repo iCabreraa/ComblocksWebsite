@@ -1,32 +1,36 @@
+// WhatIsManagementSystemSection.tsx (versión simplificada)
 import React from "react";
-import {
-  Section,
-  Container,
-  Title,
-  Description,
-  ImageWrapper,
-  StyledImage,
-} from "./WhatIsManagementSystemSection.styles";
+import styled from "styled-components";
 
-const WhatIsManagementSystemSection = () => {
-  return (
-    <Section id="what-is-ms">
-      <Container>
-        <Title>¿Qué es un sistema de gestión (MS)?</Title>
-        <Description>
-          Un sistema de gestión es un enfoque estructurado que permite a las
-          organizaciones mejorar procesos empresariales, asegurando calidad,
-          gestión del riesgo y cumplimiento normativo.
-        </Description>
-        <ImageWrapper>
-          <StyledImage
-            src="/images/hero-image2.png"
-            alt="Visualización de un sistema de gestión"
-          />
-        </ImageWrapper>
-      </Container>
-    </Section>
-  );
-};
+const Section = styled.section`
+  padding: 8rem 2rem;
+  background: #0a0f1c;
+  text-align: center;
+  color: white;
+`;
+
+const Title = styled.h2`
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+`;
+
+const Paragraph = styled.p`
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.4rem;
+  line-height: 1.8;
+  opacity: 0.9;
+`;
+
+const WhatIsManagementSystemSection = () => (
+  <Section>
+    <Title>¿Qué es un Sistema de Gestión?</Title>
+    <Paragraph>
+      Es una forma estructurada de organizar la información y los procesos de tu
+      empresa para alcanzar objetivos. Comblocks convierte esa teoría en
+      herramientas prácticas que puedes usar desde el primer día.
+    </Paragraph>
+  </Section>
+);
 
 export default WhatIsManagementSystemSection;

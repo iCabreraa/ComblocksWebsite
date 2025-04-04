@@ -4,9 +4,7 @@ import Hero from "@/components/Hero/Hero";
 import ToolCards from "@/components/Sections/ToolCards/ToolCards";
 import Footer from "@/components/Footer/Footer";
 import Head from "next/head";
-import IntegrationSection from "@/components/Sections/IntegrationSection/IntegrationSection";
 import WhatIsManagementSystemSection from "@/components/Sections/WhatIsManagementSystemSection/WhatIsManagementSystemSection";
-import ManagementSystemSection from "@/components/Sections/ManagementSystemSection/ManagementSystemSection";
 import SupportSection from "@/components/Sections/SupportSection/SupportSection";
 import ScrollNarrativeSection from "@/components/Sections/ScrollNarrativeSection/ScrollNarrativeSection";
 
@@ -46,11 +44,9 @@ const HomePage = () => (
     <Navbar />
     <Hero />
     <ToolCards />
-    <ScrollNarrativeSection />
     <WhatIsManagementSystemSection />
-    <IntegrationSection />
-    <ManagementSystemSection />
-    <SupportSection />
+    <ScrollNarrativeSection />
+
     <Footer />
   </>
 );

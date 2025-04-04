@@ -1,19 +1,24 @@
 import styled, { css } from "styled-components";
 
-// FloatingCubes.styles.ts
 export const FloatingCube = styled.div<{ $category: string }>`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 58px;
-  height: 58px;
   transform: translate(-50%, -50%);
-  border-radius: 12px;
-  font-size: 2rem;
-  pointer-events: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  pointer-events: auto;
   z-index: 10;
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: drop-shadow(0 0 4px white);
+    cursor: pointer;
+  }
 
   ${({ $category }) => {
     const map = {
@@ -28,8 +33,45 @@ export const FloatingCube = styled.div<{ $category: string }>`
     return css`
       background-color: ${bg};
       color: ${color};
-      box-shadow: 0 0 18px ${color}66;
+      box-shadow: 0 0 10px ${color}66;
       text-shadow: 0 0 4px ${color};
     `;
   }}
+`;
+
+export const NarrativeMessage = styled.div`
+  position: absolute;
+  top: 72%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  font-size: 2.2rem;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.4s ease;
+
+  background: linear-gradient(
+    90deg,
+    #ff4d4d,
+    #ffd600,
+    #2ef6a3,
+    #3af0ff,
+    #ff4d4d
+  );
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: moveGradient 6s linear infinite;
+
+  @keyframes moveGradient {
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 400% center;
+    }
+  }
 `;
